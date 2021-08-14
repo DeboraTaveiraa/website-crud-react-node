@@ -32,5 +32,3 @@ app.use(routes);
 app.listen(port, function() {
     console.log('Server is running!')
 })
-
-console.log("Teste")
