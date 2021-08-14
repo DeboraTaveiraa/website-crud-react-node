@@ -5,7 +5,7 @@ const path = require('path');
 // rotas
 const routes = require('./src/routes');
 
-//drive que faz conexão do servidor com banco de dados
+// drive que faz conexão do servidor com banco de dados
 const mongoose = require('mongoose');
 
 const app = express();
@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost:27017/db-admin-ifro', {
     } else {
         console.log('MongoDB conectado com sucesso! Porta: ' + port)
     }
-})
+});
 
 app.use(cors());
 app.use(cookieParser());
