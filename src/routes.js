@@ -1,9 +1,9 @@
 const express = require('express');
 const routes = express.Router();
+const Usuario = require('./controllers/usuarios.controller');
 
-routes.get('/', function(red, res) {
-  res.json({message: 'Hello world'});
-});
+routes.get('/', Usuario.index);
+routes.post('/api/usuarios' ,Usuario.create);
 
 // exportando funções de rotas
 module.exports = routes;
