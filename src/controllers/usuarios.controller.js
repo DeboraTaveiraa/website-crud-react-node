@@ -1,8 +1,10 @@
 const Usuario = require('../models/usuario.model');
 
 module.exports = {
-  index(req, res) {
-    res.json({ message: 'Hello world from Controller Usuário' });
+  async index(req, res) {
+    // retorna todos os usuarios
+    const user = await Usuario.find();
+    res.json(user);    
   },
   // async: define a função como assíncrona
   async create(req, res) {
@@ -26,5 +28,11 @@ module.exports = {
       // status 500: erro
       return res.status(500).json(user);
     }
-  }
+  },
+  async details(req, res) {
+    // retorna detalhes dos usuarios
+    const {_id} = req.params;
+    const user = await Usuario.findOne({_id});
+    res.json(user);    
+  },
 }
