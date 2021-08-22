@@ -35,4 +35,16 @@ module.exports = {
     const user = await Usuario.findOne({_id});
     res.json(user);    
   },
+  async delete(req, res) {
+    // {_id}: forma de desistruturar os dados
+    const {_id} = req.params;
+    const user = await Usuario.findByIdAndDelete({_id});
+    return res.json(user);
+  },
+  async update(req, res) {
+    const {_id, nome_usuario, email_usuario, senha_usuario, tipo_usuario} = req.body;
+    const data = {nome_usuario, email_usuario, senha_usuario, tipo_usuario};
+    const user = await Usuario.findOneAndUpdate({_id}, data, {new: true}); //new: true - é o parâmetro que faz com que se entenda que esses dados serão atualizados.
+    res.json(user);
+  }
 }
