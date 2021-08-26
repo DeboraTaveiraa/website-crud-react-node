@@ -35,8 +35,8 @@ export default function Dashboard() {
   const classes = useStyles();  
 
   return (
-    <div className={classes.root}>         
-      <MenuAdmin />      
+    <div className={classes.root}>              
+      <MenuAdmin title={'Dashboard'}/>      
       
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
