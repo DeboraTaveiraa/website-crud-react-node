@@ -16,7 +16,7 @@ routes.put('/api/usuarios', Usuario.update); // atualizada os dados de determina
 // ROTAS DE PRODUTOS
 routes.post('/api/produtos', Produto.create);
 routes.get('/api/produtos', Produto.index);
-routes.get('/api/produtos/:_id', Produto.details);
+routes.get('/api/produtos-details/:_id', Produto.details);
 routes.delete('/api/produtos/:_id', Produto.delete);
 routes.put('/api/produtos', Produto.update);
 

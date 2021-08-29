@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -8,8 +8,11 @@ import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import { green } from '@material-ui/core/colors';
 import MenuAdmin from '../../../components/menu-admin';
 import Footer from '../../../components/footer-admin';
+import api from '../../../services/api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,10 +43,48 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     width: '50%'
   },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
+  buttonSuccess: {
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
+    },
+  },
 }));
 
 export default function UsuariosCadastrar() {
-  const classes = useStyles();  
+  const classes = useStyles();
+  const [nome, setNome]  = useState('');
+  const [email, setEmail]  = useState('');
+  const [senha, setSenha]  = useState('');
+  const [tipo, setTipo]  = useState(''); 
+
+  async function handleSubmit() {
+    const data = {
+      nome_usuario: nome, 
+      email_usuario: email, 
+      senha_usuario: senha, 
+      tipo_usuario: tipo
+    };
+
+    if (nome !== '' && email !== '' && senha !== '' && tipo !== '') {     
+      const response = await api.post('api/usuarios', data);       
+        if(response.status === 200) {          
+          window.location.href = '/admin/usuarios';
+        } else {
+          alert('Erro ao cadastrar usuário.');
+        }                    
+    } else {
+      alert('Por favor, preencha todos os campos.');
+    }
+  }
 
   return (
     <div className={classes.root}>               
@@ -66,6 +107,8 @@ export default function UsuariosCadastrar() {
                       label="Nome completo"
                       fullWidth
                       autoComplete="nome"
+                      value={nome}
+                      onChange={e => setNome(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12} sm={12}>
@@ -77,6 +120,8 @@ export default function UsuariosCadastrar() {
                       label="Email"
                       fullWidth
                       autoComplete="Email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12} sm={12}>
@@ -86,8 +131,8 @@ export default function UsuariosCadastrar() {
                         native
                         labelId="labelTipo"
                         id="tipo"
-                        // value={state.age}
-                        // onChange={handleChange}                        
+                        value={tipo}
+                        onChange={e => setTipo(e.target.value)}                      
                       >
                         <option aria-label="None" value="" />
                         <option value={1}>Administrador</option>
@@ -105,8 +150,18 @@ export default function UsuariosCadastrar() {
                       label="Senha"
                       fullWidth
                       autoComplete="senha"
+                      value={senha}
+                      onChange={e => setSenha(e.target.value)}
                     />
                   </Grid>
+                  <Grid item xs={12} sm={12}>
+                  <Button                      
+                    onClick={handleSubmit} 
+                    variant="contained" 
+                    color="primary">
+                    Salvar
+                  </Button>
+                  </ Grid>
                 </Grid>
               </Paper>
             </Grid>                    
