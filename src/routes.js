@@ -11,6 +11,7 @@ routes.get('/api/usuarios', Usuario.index); // retorna todos os usários cadastr
 routes.get('/api/usuarios-details/:_id', Usuario.details); // retorna determinado usuário pelo id
 routes.delete('/api/usuarios/:_id', Usuario.delete); // deleta determinado usuário pelo id
 routes.put('/api/usuarios', Usuario.update); // atualizada os dados de determinado usuário
+routes.post('/api/usuarios/login', Usuario.login);
 
 
 // ROTAS DE PRODUTOS
