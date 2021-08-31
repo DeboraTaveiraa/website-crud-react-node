@@ -76,4 +76,19 @@ module.exports = {
         }
     })
   },
+  async checkToken(req, res) {
+    const token = req.body.token || req.query.token || req.cookies.token || req.headers['x-access-token'];    
+
+    if(!token) {
+      res.json({ status: 401, msg: 'Não autorizado: Token inexistente.'});
+    } else {
+      jwt.verify(token, secret, function(err, decoded) {
+        if (err) {
+          res.json({ status: 401, msg: 'Não autorizado: Token inválido.'});
+        } else {          
+          res.json({ status: 200 })
+        }
+      })
+    }
+  }
 }

@@ -4,6 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './pages/admin/dashboard';
 import Login from './pages/admin/login';
 
+import PrivateRoute from './services/wAuth';
+
 // Imports Admin
 import Produtos from './pages/admin/produtos';
 import ProdutoCadastrar from './pages/admin/produtos/produtos.cadastrar';
@@ -22,20 +24,20 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         // Rota Client
-        <Route path="/" exact component= { Home }></Route>
-        <Route path="/produtos/:idProduto" exact component= { ProdutoDetails }></Route>
+        <Route path="/" exact component= { Home } />
+        <Route path="/produtos/:idProduto" exact component= { ProdutoDetails } />
 
         // Rota Admin
-        <Route path="/admin" exact component= { Dashboard }></Route>
-        <Route path="/admin/login" exact component= { Login }></Route>
+        <Route path="/admin/login" exact component= { Login } />
+        <PrivateRoute path="/admin" exact component= { Dashboard } />
 
-        <Route path="/admin/produtos" exact component= { Produtos }></Route>
-        <Route path="/admin/produtos/cadastrar" exact component= { ProdutoCadastrar }></Route>
-        <Route path="/admin/produtos/editar/:idProduto" exact component= { ProdutoEditar }></Route>
+        <PrivateRoute path="/admin/produtos" exact component= { Produtos } />
+        <PrivateRoute path="/admin/produtos/cadastrar" exact component= { ProdutoCadastrar } />
+        <PrivateRoute path="/admin/produtos/editar/:idProduto" exact component= { ProdutoEditar } />
 
-        <Route path="/admin/usuarios" exact component= { Usuarios }></Route>
-        <Route path="/admin/usuarios/cadastrar" exact component= { UsuarioCadastrar }></Route>
-        <Route path="/admin/usuarios/editar/:idUsuario" exact component= { UsuarioEditar }></Route>
+        <PrivateRoute path="/admin/usuarios" exact component= { Usuarios }></PrivateRoute>
+        <PrivateRoute path="/admin/usuarios/cadastrar" exact component= { UsuarioCadastrar } />
+        <PrivateRoute path="/admin/usuarios/editar/:idUsuario" exact component= { UsuarioEditar } />
       </Switch>
     </BrowserRouter>
   )

@@ -12,6 +12,7 @@ routes.get('/api/usuarios-details/:_id', Usuario.details); // retorna determinad
 routes.delete('/api/usuarios/:_id', Usuario.delete); // deleta determinado usuário pelo id
 routes.put('/api/usuarios', Usuario.update); // atualizada os dados de determinado usuário
 routes.post('/api/usuarios/login', Usuario.login);
+routes.get('/api/usuarios/checktoken', Usuario.checkToken);
 
 
 // ROTAS DE PRODUTOS
