@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import MenuAdmin from '../../../components/menu-admin';
 import Footer from '../../../components/footer-admin';
 
+import painelDashboard from '../../../assets/img/painelDashboard.png'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -42,7 +44,7 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-                              
+             <img src={painelDashboard} alt="painel da logo"/>                 
           </Grid>
           <Box pt={4}>
             <Footer />
