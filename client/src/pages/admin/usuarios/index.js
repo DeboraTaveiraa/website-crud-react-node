@@ -16,6 +16,7 @@ import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import Footer from '../../../components/footer-admin';
 import api from '../../../services/api';
+import { getNomeTipo } from '../../../functions/static_data';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(4),
   },
   paper: {
@@ -79,6 +80,7 @@ export default function ListUser() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
+            <Button style={{marginBottom: 10}} variant="contained" href={'/admin/usuarios/cadastrar'} color="secondary">Novo</Button>
             <Paper elevation={3} className={classes.paper}>
                 <h2>Listagem de Usuários</h2>
                 <Grid container spacing={3}>
@@ -102,11 +104,8 @@ export default function ListUser() {
                             </TableCell>
                             <TableCell align="center">{user.email_usuario}</TableCell>
                             <TableCell 
-                            align="center">
-                              {user.tipo_usuario === 1? 
-                              <Chip label="Administrador" color="primary"/>
-                              :
-                              <Chip label="Funcionário" color="secondary"/>}
+                            align="center">                              
+                              <Chip label={getNomeTipo(user.tipo_usuario)} color="primary"/>                             
                             </TableCell>
                             <TableCell align="center">
                               {new Date(user.createdAt).toLocaleString('pt-br')}

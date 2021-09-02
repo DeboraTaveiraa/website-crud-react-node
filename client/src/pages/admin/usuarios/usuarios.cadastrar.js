@@ -136,7 +136,8 @@ export default function UsuariosCadastrar() {
                       >
                         <option aria-label="None" value="" />
                         <option value={1}>Administrador</option>
-                        <option value={2}>Funcionário</option>                        
+                        <option value={2}>Gerente</option>                        
+                        <option value={3}>Funcionário</option>                        
                       </Select>
                     </FormControl>
                   </Grid>

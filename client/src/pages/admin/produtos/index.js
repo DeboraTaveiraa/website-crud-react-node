@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(4),
   },
   paper: {
@@ -79,6 +79,7 @@ export default function ProductList() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
+            <Button style={{marginBottom: 10}} variant="contained" href={'/admin/produtos/cadastrar'} color="secondary">Novo</Button>
             <Paper elevation={3} className={classes.paper}>
                 <h2>Listagem de Produtos</h2>
                 <Grid container spacing={3}>
